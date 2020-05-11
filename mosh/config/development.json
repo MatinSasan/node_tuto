@@ -1,0 +1,7 @@
+{
+  "name": "Some Express App - Development",
+  "mail": {
+    "name": "someName"
+  },
+  "DEBUG": "app:startup"
+}
