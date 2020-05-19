@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const Joi = require('joi');
 const config = require('config');
 const courses = require('./routes/courses');
@@ -15,6 +16,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(helmet());
+
+mongoose.connect(
+  'mongodb://localhost/playground',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  },
+  err => {
+    if (err) console.error('Error: ', err);
+    console.log('Connected to MongoDB...');
+  }
+);
 
 app.use('/api/courses', courses);
 app.use('/', home);
