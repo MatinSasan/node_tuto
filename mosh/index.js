@@ -2,10 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Joi = require('joi');
 const config = require('config');
-const courses = require('./routes/courses');
-const home = require('./routes/home');
 const helmet = require('helmet');
 const morgan = require('morgan');
+
+const courses = require('./routes/courses');
+const home = require('./routes/home');
+const genres = require('./routes/genres');
 
 const startupDebugger = require('debug')('app:startup');
 const dbDebugger = require('debug')('app:db');
@@ -30,6 +32,7 @@ mongoose.connect(
 );
 
 app.use('/api/courses', courses);
+app.use('/api/genres', genres);
 app.use('/', home);
 
 app.set('view engine', 'pug');
